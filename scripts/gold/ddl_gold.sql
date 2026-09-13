@@ -18,6 +18,10 @@ Usage:
 -- Create Dimension: gold.dim_customers
 -- ===========================================================================
 
+IF OBJECT_ID('gold.dim_customers', 'V') IS NOT NULL
+    DROP VIEW gold.dim_customers;
+GO
+	
 CREATE VIEW gold.dim_customers as
 select
 	ROW_NUMBER() OVER (ORDER BY cst_id) AS customer_key,
@@ -37,11 +41,15 @@ left join silver.erp_CUST_AZ12 as ca
 on        ci.cst_key = ca.cid
 left join silver.erp_LOC_A101 as la
 on        ci.cst_key = la.cid
+GO
 
 -- ===========================================================================
 -- Create Dimension: gold.dim_products
 -- ===========================================================================
-
+IF OBJECT_ID('gold.dim_products', 'V') IS NOT NULL
+    DROP VIEW gold.dim_products;
+GO
+	
 create view gold.dim_products as 
 select 
     ROW_NUMBER() over (order by pn.prd_start_dt,pn.prd_key) as product_key,
@@ -59,11 +67,15 @@ from silver.crm_prd_info as pn
 left join silver.erp_PX_CAT_G1V2 as pc
 on        pn.cat_id = pc.ID
 where prd_end_dt is null --filter out all historical data
-
+GO
+	
 -- ===========================================================================
 -- Create Dimension: gold.fact_sales
 -- ===========================================================================
-
+IF OBJECT_ID('gold.fact_sales', 'V') IS NOT NULL
+    DROP VIEW gold.fact_sales;
+GO
+	
 create view gold.fact_sales as
 select
 sd.sls_ord_num as order_number,
@@ -75,6 +87,7 @@ sd.sls_due_dt as due_date,
 sd.sls_sales as sales_amount,
 sd.sls_quantity as quantity,
 sd.sls_price
+GO
 from silver.crm_sales_details as sd
 left join gold.dim_products as pr
 on        sd.sls_prd_key = pr.product_number
