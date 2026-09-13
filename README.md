@@ -31,7 +31,7 @@ This project involves:
 
 ## 🏗️ Architecture: The Medallion Approach
 
-![Data Architecture Diagram]()
+![Data Architecture Diagram](docs/Data%20Architecture.drawio.png)
 
 This project strictly follows the Medallion Data Architecture paradigm to ensure data quality and progressive refinement:
 
