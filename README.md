@@ -107,3 +107,4 @@ My technical journey involves exploring SQL, designing data architecture, and bu
 - **LinkedIn:** [www.linkedin.com/in/nidhi-singhal-cse]
 - **GitHub:** [@Nidhi-Singhal-0808](https://github.com/Nidhi-Singhal-0808)
 - **Email:** [singhalnidhi0808@gmail.com]
+- **Instagram:** [https://www.instagram.com/nidhii_diariess/]
